@@ -1,0 +1,440 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin-top: 0px;
+  background: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/314556/nightSky.jpg")
+     center center repeat;
+}
+
+.rc-slider {
+  margin: 50px auto !important;
+}
+
+.rc-slider-handle {
+  width: 28px  !important;
+  height: 28px  !important;
+  margin-top: -8px  !important;
+  background-color: gray  !important;
+  border: solid 2px gray  !important;
+  border-radius: 33%  !important;
+  cursor: pointer ;
+  cursor: grab;
+  opacity: 1;
+  touch-action: pan-x;
+  z-index: 999;
+}
+
+.rc-slider-handle-dragging.rc-slider-handle-dragging.rc-slider-handle-dragging {
+  border-color: hsl(240deg 8% 93%) !important;
+  box-shadow: 0 0 0 5px #e0e7ea !important;
+  z-index: 999;
+}
+
+.rc-slider-rail {
+  position: absolute;
+  width: 100%;
+  height: 15px  !important;
+  background-color: #e9e9e9  !important;
+  border-radius: 6px  !important;
+  z-index: 999;
+}
+
+.rc-slider-track {
+  position: absolute;
+  height: 14px  !important;
+  background-color: lightgray  !important;
+  border-radius: 6px  !important;
+  z-index: 999;
+}
+
+.svg-container {
+  width: 100%;
+}
+
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+
+
+ol, ul {
+  list-style: none;
+}
+
+blockquote, q {
+  quotes: none; 
+}
+
+blockquote:before, blockquote:after, q:before, q:after {
+  content: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+* {
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+/* Background */
+
+:root{
+  --orbit: 1rem;
+  --dia: calc((var(--orbit)/2) * -1);
+  --mercury_o: 1;
+  --mercury_orbit: calc(var(--orbit) * var(--mercury_o));
+  --mercury_dia: calc(var(--dia) * var(--mercury_o));
+  --venus_o: 2.1;
+  --venus_orbit: calc(var(--orbit) * var(--venus_o));
+  --venus_dia: calc(var(--dia) * var(--venus_o));
+  --earth_o: 3.75;
+  --earth_orbit: calc(var(--orbit) * var(--earth_o));
+  --earth_dia: calc(var(--dia) * var(--earth_o));
+  --mars_o: 5.2;
+  --mars_orbit: calc(var(--orbit) * var(--mars_o));
+  --mars_dia: calc(var(--dia) * var(--mars_o));
+  --jupiter_o: 18;
+  --jupiter_orbit: calc(var(--orbit) * var(--jupiter_o));
+  --jupiter_dia: calc(var(--dia) * var(--jupiter_o));
+  --saturn_o: 32;
+  --saturn_orbit: calc(var(--orbit) * var(--saturn_o));
+  --saturn_dia: calc(var(--dia) * var(--saturn_o));
+  --uranus_o: 65;
+  --uranus_orbit: calc(var(--orbit) * var(--uranus_o));
+  --uranus_dia: calc(var(--dia) * var(--uranus_o));
+  --neptune_o: 100;
+  --neptune_orbit: calc(var(--orbit) * var(--neptune_o));
+  --neptune_dia: calc(var(--dia) * var(--neptune_o));
+}  
+
+#universe {
+  z-index: 1;
+  position: absolute;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  background-position: center 40%;
+  background-repeat: no-repeat;
+  background-size: cover; 
+}
+  
+#galaxy {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+#sun, .planet {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 1em;
+  height: 1em;
+  margin-top: -0.5em;
+  margin-left: -0.5em;
+  border-radius: 50%;
+}
+
+#sun {
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.planet {
+  background-color: #202020;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.orbit {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+}
+
+.pos {
+  position: absolute;
+  border: 1px solid #fff;
+}
+
+.pos {
+  left: 50%;
+  top: -1px; 
+  border: none;
+}
+
+#comet {
+  border: 2px solid transparent;
+  border-bottom: 70px solid #fff;
+  position: absolute;
+  transform-origin: top center;
+  top: -150%;
+  left: 43%;
+}
+
+#comet:after {
+  content: '';
+  position: absolute;
+  top: 58px;
+  left: 50%;
+  height: 10px;
+  width: 10px;
+  border-radius: 100%;
+  background: #fff;
+  transform: translateX(-50%);
+  box-shadow: 0 0 15px 0 #fff;
+}
+
+/* Orbit sizes */
+#mercury.orbit {
+  width: var(--mercury_orbit);
+  height: var(--mercury_orbit);
+  margin-top: var(--mercury_dia);
+  margin-left: var(--mercury_dia);
+}
+
+#venus.orbit {
+  width: var(--venus_orbit);
+  height: var(--venus_orbit);
+  margin-top: var(--venus_dia);
+  margin-left: var(--venus_dia);
+}
+
+#earth.orbit {
+  width: var(--earth_orbit);
+  height: var(--earth_orbit);
+  margin-top: var(--earth_dia);
+  margin-left: var(--earth_dia);
+}
+
+#mars.orbit {
+  width: var(--mars_orbit);
+  height: var(--mars_orbit);
+  margin-top: var(--mars_dia);
+  margin-left: var(--mars_dia);
+}
+
+#jupiter.orbit {
+  width: var(--jupiter_orbit);
+  height: var(--jupiter_orbit);
+  margin-top: var(--jupiter_dia);
+  margin-left: var(--jupiter_dia);
+}
+
+#saturn.orbit {
+  width: var(--saturn_orbit);
+  height: var(--saturn_orbit);
+  margin-top: var(--saturn_dia);
+  margin-left: var(--saturn_dia);
+}
+
+#uranus.orbit {
+  width: var(--uranus_orbit);
+  height: var(--uranus_orbit);
+  margin-top: var(--uranus_dia);
+  margin-left: var(--uranus_dia);
+}
+
+#neptune.orbit {
+  width: var(--neptune_orbit);
+  height: var(--neptune_orbit);
+  margin-top: var(--neptune_dia);
+  margin-left: var(--neptune_dia);
+}
+
+/* Planet sizes */
+#sun {
+  font-size: 0.3rem;
+}
+
+#mercury {
+  font-size: 0.4rem;
+}
+
+#venus {
+  font-size: 0.5rem;
+}
+
+#earth {
+  font-size: 0.5rem;
+}
+
+#mars {
+  font-size: 0.3rem;
+}
+
+#jupiter {
+  font-size: 3rem;
+}
+
+#saturn {
+  font-size: 2.7rem;
+}
+
+#uranus {
+  font-size: 2.2rem;
+}
+#neptune {
+  font-size: 2.1rem;
+}
+
+#saturn .ring{
+  width: 2em;
+  height: 2em;
+  margin-top: -1em;
+  margin-left: -1em;
+  border: 0.3em solid rgba(160, 147, 130, 0.7);
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  border-radius: 50%;
+}
+
+#sun {
+  background-image: url('assets/img/sun.png')
+}
+
+#mercury .planet{
+  background-image: url('assets/img/mercury.png')
+}
+
+#venus .planet{
+  background-image: url('assets/img/venus.png')
+}
+
+#earth .planet{
+  background-image: url('assets/img/earth.png')
+}
+
+#mars .planet{
+  background-image: url('assets/img/mars.png')
+}
+
+#jupiter .planet{
+  background-image: url('assets/img/jupiter.png')
+}
+
+#saturn .planet{
+  background-image: url('assets/img/saturn.png')
+}
+
+#uranus .planet{
+  background-image: url('assets/img/uranus.png')
+}
+
+#neptune .planet{
+  background-image: url('assets/img/neptune.png')
+}
+
+#system {
+  font-size: 5.5rem;
+  color: white;
+  white-space: nowrap;
+  position: absolute;
+  top: 0%;
+  left: 83%;
+  width: 1em;
+  height: 1em;
+  margin-top: -0.5em;
+  margin-left: -0.5em;
+  border-radius: 50%;
+}
+
+#faster {
+  font-size: 2.5rem;
+  color: white;
+  white-space: nowrap;
+  position: absolute;
+  top: 49%;
+  left: 55%;
+  width: 1em;
+  height: 1em;
+  margin-top: -0.5em;
+  margin-left: -0.5em;
+  border-radius: 50%;
+}
+
+#slower {
+  font-size: 3.5rem;
+  color: white;
+  white-space: nowrap;
+  position: absolute;
+  top: 69%;
+  left: 16%;
+  width: 1em;
+  height: 1em;
+  margin-top: -0.5em;
+  margin-left: -0.5em;
+  border-radius: 50%;
+}
+
+#svg1 {
+  width: 50%;
+  height: 50%;
+  font-size: 3.5rem;
+  position: absolute;
+  top: 322px;
+  left: 1093px;
+}
+
+#svg2 {
+  /*   width: 50%; */
+  height: 300px;
+  font-size: 3.5rem;
+  position: absolute;
+  top: 354px;
+  left: 269px;
+}
+
+#svg3 {
+  width: 50%;
+  height: 50%;
+  font-size: 3.5rem;
+  position: absolute;
+  top: 72%;
+  left: 15%;
+}
+
+#slider {
+  width:420px;
+  margin:20px auto;
+  z-index: 999;
+}
+
+.ribbon {
+  background-color: #a00;
+  overflow: hidden;
+  white-space: nowrap;
+  position: absolute;
+  right: -50px;
+  top: 40px;
+  -webkit-transform: rotate(45deg);
+     -moz-transform: rotate(45deg);
+      -ms-transform: rotate(45deg);
+       -o-transform: rotate(45deg);
+          transform: rotate(45deg);
+	-webkit-box-shadow: 0 0 10px #888;
+     -moz-box-shadow: 0 0 10px #888;
+          box-shadow: 0 0 10px #888;
+}
+
+.ribbon a {
+  border: 1px solid #faa;
+  color: #fff;
+  display: block;
+  font: bold 81.25% 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  margin: 1px 0;
+  padding: 10px 50px;
+  text-align: center;
+  text-decoration: none;
+  text-shadow: 0 0 5px #444;
+}
